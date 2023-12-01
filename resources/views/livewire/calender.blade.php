@@ -1,7 +1,7 @@
 @php
     $faker = Faker\Factory::create();
 @endphp
-<div class="bg-green-900">
+<div class="bg-green-900 h-full">
     <div class="grid grid-cols-2 gap-4 text-center p-4">
         <div>
             <label for="month" class="text-gray-200">Mes:</label>
