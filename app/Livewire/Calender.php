@@ -11,9 +11,13 @@ class Calender extends Component
                             'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     public $month;
     public $days;
-    public $days_of_week_array = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'];
+    public $days_of_week_array = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
     public $weeks_for_month = [];
     public $primer_dia;
+
+    public $events = [];
+
+    public $openModal = false;
 
     public function mount()
     {
@@ -22,6 +26,41 @@ class Calender extends Component
 
         $this->loadWeeksMonth();
 
+        $this->events = auth()->user()->events;
+
+    }
+
+    public function create()
+    {
+        return $this->redirect(route('new-event'), navigate: true);
+    }
+
+    public $day_selected;
+    public $month_selected;
+    public $year_selected;
+
+    public function showDay($day, $week_number){
+        $this->day_selected = $day;
+        if ($day > 15 && $week_number == 0) {
+            $key = $this->month - 2;
+        }elseif ($day < 15 && $week_number > 3) {
+            $key = $this->month;
+        }
+        else{
+            $key = $this->month - 1;
+        }
+
+        if ($key < 0) {
+            $key = 11;
+            $this->year_selected = $this->year - 1;
+        }
+        else{
+            $this->year_selected = $this->year;
+        }
+
+        $this->month_selected = $this->months[$key];
+
+        $this->openModal = true;
     }
 
     public function openListPersonas(){
@@ -29,8 +68,8 @@ class Calender extends Component
     }
 
     public function loadWeeksMonth(){
-
-        $this->weeks_for_month = [];
+//        $this->weeks_for_month = [];
+        $this->reset('weeks_for_month');
 
         $days_month = $this->loadDays();
         $day_start_mont = $this->getFirstDay();

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('login');
 });
 
 Route::middleware([
@@ -27,5 +27,6 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('calender', \App\Livewire\Calender::class)->name('calender');
+    Route::get('new-event', \App\Livewire\NewNote::class)->name('new-event');
 
 });
