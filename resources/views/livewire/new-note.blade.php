@@ -1,5 +1,7 @@
-<div class="items-center h-[calc(100vh-4rem)] text-gray-200 ">
-    <div class="max-w-md m-auto p-4 border-2 rounded-lg pt-4">
+<div class="items-center h-[calc(100vh-4rem)] text-gray-200">
+    <br>
+    <br>
+    <div class="max-w-md m-auto p-4 border-2 rounded-lg p-10">
         <div class="text-center pb-4">
             <h1 class="font-semibold text-3xl">Crear Evento</h1>
         </div>
